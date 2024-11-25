@@ -13,13 +13,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.roomproject.Receta
+import com.example.roomproject.RecetaRoom
 import com.example.roomproject.viewmodel.MainViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(viewModel: MainViewModel) {
-    val recetas by viewModel.recetas.collectAsState(initial = emptyList())
+    val recetas by viewModel.recerasroom.collectAsState(initial = emptyList())
     val coroutineScope = rememberCoroutineScope()
 
     Scaffold(
@@ -43,7 +43,7 @@ fun MainScreen(viewModel: MainViewModel) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RecetaItem(receta: Receta) {
+fun RecetaItem(recetaRoom: RecetaRoom) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -54,8 +54,8 @@ fun RecetaItem(receta: Receta) {
             modifier = Modifier
                 .padding(16.dp)
         ) {
-            Text(text = "Nombre: ${receta.nombre}", style = MaterialTheme.typography.bodyLarge)
-            Text(text = "Instrucciones: ${receta.instrucciones}", style = MaterialTheme.typography.bodyMedium)
+            Text(text = "Nombre: ${recetaRoom.title}", style = MaterialTheme.typography.bodyLarge)
+           // Text(text = "Instrucciones: ${recetaRoom.}", style = MaterialTheme.typography.bodyMedium)
         }
     }
 }

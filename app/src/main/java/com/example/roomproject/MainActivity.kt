@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.roomproject.database.bd.DatabaseClient
 import com.example.roomproject.screens.MainScreen
+import com.example.roomproject.screens.RecipeSearchScreen
 import com.example.roomproject.ui.theme.RoomProjectTheme
 import com.example.roomproject.viewmodel.MainViewModel
 import kotlinx.coroutines.Dispatchers
@@ -37,14 +38,17 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MainScreen(viewModel = viewModel )
+         //   RecipeSearchScreen(recipeViewModel = viewModel)
         }
-        val miReceta = Receta(nombre = "Pasta", ingredientes = "Pasta, tomate, carne", instrucciones = "Cocer la pasta, preparar salsa" )
+  /*      val miReceta = RecetaRoom(nombre = "Pasta", ingredientes = "Pasta, tomate, carne", instrucciones = "Cocer la pasta, preparar salsa" )
 
         lifecycleScope.launch(Dispatchers.IO){
             val recipeDAO = DatabaseClient.getDataBase(applicationContext).recetasDAO()
 
             recipeDAO.insert(miReceta)
         }
+
+   */
     }
 }
 

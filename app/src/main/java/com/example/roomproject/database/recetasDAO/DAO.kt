@@ -8,13 +8,16 @@ import androidx.room.Query
 interface recetasDAO {
 
     @Insert // Para insertar una receta en la base de datos
-    suspend fun insert(receta: Receta)
+    suspend fun insert(recetaRoom: RecetaRoom)
+
+    @Insert // Para insertar una receta en la base de datos
+    suspend fun insertRecetas(recetaRoom: List<RecetaRoom>)
 
     @Query("SELECT * FROM recetas") // // Select para obtener todas las recetas
-    suspend fun getAllRecetas(): List<Receta>
+    suspend fun getAllRecetas(): List<RecetaRoom>
 
     @Query("SELECT * FROM recetas WHERE id = :id") // Select para obtener receta por id
-    suspend fun getRecetaById(id: Int): Receta
+    suspend fun getRecetaById(id: Int): RecetaRoom
 
 
 }
