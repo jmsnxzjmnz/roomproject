@@ -1,10 +1,23 @@
+// Primero va el bloque buildscript
 buildscript {
     ext {
+        // Definimos una versión global para Jetpack Compose.
         compose_version = '1.4.2'
     }
-}// Top-level build file where you can add configuration options common to all sub-projects/modules.
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // El plugin de Hilt para la generación de código y la inyección de dependencias.
+        classpath "com.google.dagger:hilt-android-gradle-plugin:2.50"
+    }
+}
+
+// Luego va el bloque plugins
 plugins {
     id 'com.android.application' version '7.4.2' apply false
     id 'com.android.library' version '7.4.2' apply false
     id 'org.jetbrains.kotlin.android' version '1.8.10' apply false
 }
+

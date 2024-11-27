@@ -8,6 +8,7 @@ import retrofit2.http.Query
 interface ApiSpoonacular {
     @GET("recipes/findByIngredients")
      fun searchRecipes(
+
         @Query("ingredients") ingredients: String,
         @Query("number") number: Int,
         @Query("apiKey") apiKey: String

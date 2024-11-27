@@ -3,12 +3,10 @@ package com.example.roomproject.remote.api
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object ApiClient {
+class ApiClient(base: String) {
 
-    private const val BASE_URL = "https://api.spoonacular.com/"
-
-    private val retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
+    private val retrofit: Retrofit = Retrofit.Builder()
+        .baseUrl(base)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 

@@ -3,9 +3,8 @@ package com.example.roomproject
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
+import androidx.activity.viewModels
+
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -18,26 +17,21 @@ import com.example.roomproject.screens.MainScreen
 import com.example.roomproject.screens.RecipeSearchScreen
 import com.example.roomproject.ui.theme.RoomProjectTheme
 import com.example.roomproject.viewmodel.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        val viewModel =
-            ViewModelProvider(
-                this,
-                object : ViewModelProvider.Factory {
-                    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                        return MainViewModel(applicationContext) as T
-                    }
-                }
-            ).get(MainViewModel::class.java)
+        // Hilt provee automáticamente el ViewModel
+        val viewModel: MainViewModel by viewModels()
 
         super.onCreate(savedInstanceState)
         setContent {
-            MainScreen(viewModel = viewModel )
+           MainScreen(viewModel = viewModel )
          //   RecipeSearchScreen(recipeViewModel = viewModel)
         }
   /*      val miReceta = RecetaRoom(nombre = "Pasta", ingredientes = "Pasta, tomate, carne", instrucciones = "Cocer la pasta, preparar salsa" )
