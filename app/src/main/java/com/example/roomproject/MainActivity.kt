@@ -7,19 +7,21 @@ import androidx.activity.viewModels
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import com.example.roomproject.database.bd.DatabaseClient
-import com.example.roomproject.screens.MainScreen
-import com.example.roomproject.screens.RecipeSearchScreen
-import com.example.roomproject.ui.theme.RoomProjectTheme
-import com.example.roomproject.viewmodel.MainViewModel
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import com.example.roomproject.presentation.screens.MainScreen
+import com.example.roomproject.presentation.screens.RecipeSearchScreen
+import com.example.roomproject.presentation.theme.RoomProjectTheme
+import com.example.roomproject.presentation.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import androidx.navigation.compose.rememberNavController
+
+sealed class Sites(val ruta: String){
+
+    object HOME : Sites("Home")
+    object SEARCH : Sites("Search")
+}
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -31,8 +33,21 @@ class MainActivity : ComponentActivity() {
 
         super.onCreate(savedInstanceState)
         setContent {
-           MainScreen(viewModel = viewModel )
-         //   RecipeSearchScreen(recipeViewModel = viewModel)
+            val navController = rememberNavController()
+
+          NavHost(navController = navController, startDestination = Sites.HOME.ruta){
+              composable(Sites.HOME.ruta){
+                  MainScreen(navC = navController, viewModel = viewModel)
+              }
+          
+          composable(Sites.SEARCH.ruta){
+              RecipeSearchScreen(navC = navController, recipeViewModel = viewModel)
+          }
+          }
+            
+
+            //   MainScreen(viewModel = viewModel )
+        //    RecipeSearchScreen(recipeViewModel = viewModel)
         }
   /*      val miReceta = RecetaRoom(nombre = "Pasta", ingredientes = "Pasta, tomate, carne", instrucciones = "Cocer la pasta, preparar salsa" )
 
