@@ -1,4 +1,4 @@
-package com.example.roomproject.infraestructure.core
+package com.example.roomproject.core
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
