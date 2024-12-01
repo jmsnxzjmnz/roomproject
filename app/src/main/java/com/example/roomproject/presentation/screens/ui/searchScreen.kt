@@ -5,6 +5,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -14,7 +15,7 @@ import com.example.roomproject.presentation.viewmodel.MainViewModel
 
 @Composable
 fun RecipeSearchScreen(navC: NavController, recipeViewModel: MainViewModel) {
-    var query by remember { mutableStateOf("") }
+    var query by rememberSaveable { mutableStateOf("") }
     val recetas by recipeViewModel.recipes.collectAsState(initial = emptyList())
 
     Column(modifier = Modifier.padding(16.dp)) {
