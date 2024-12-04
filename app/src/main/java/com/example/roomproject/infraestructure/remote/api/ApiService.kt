@@ -13,4 +13,13 @@ interface ApiSpoonacular {
         @Query("number") number: Int,
         @Query("apiKey") apiKey: String
      ): List<RecetaApi>
+
+    @GET("recipes/random")
+    suspend fun getRandomRecipe(
+        @Query("includeNutrition") includeNutrition: Boolean = false,
+        @Query("include-tags") includeTags: String? = null,
+        @Query("exclude-tags") excludeTags: String? = null,
+        @Query("number") number: Int = 1,
+        @Query("apiKey") apiKey: String
+    ):  RecetaApi
 }

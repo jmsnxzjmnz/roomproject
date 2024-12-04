@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -49,6 +50,13 @@ fun MainScreen(navC: NavController ,viewModel: MainViewModel) {
                         }
                     }) {
                         Icon(Icons.Default.Search, contentDescription = "Ir a pantalla de buscador")
+                    }
+                    IconButton(onClick = {
+                        coroutineScope.launch {
+                           viewModel.obtenerRecetaRandom()
+                            }
+                    }) {
+                        Icon(Icons.Default.Refresh , contentDescription = "Obtener 1 receta random")
                     }
                 }
             )

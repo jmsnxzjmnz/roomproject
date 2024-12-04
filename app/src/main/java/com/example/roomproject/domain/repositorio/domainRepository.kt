@@ -14,6 +14,11 @@ interface RecipeRepository {
     suspend fun searchRecipes(ingredient: String, apiKey: String): List<RecetaApi>
     suspend fun getStoredRecipes(): List<RecetaRoom>
     suspend fun deleteAllRecipes()
+    suspend fun getRandomRecipe( includeNutrition: Boolean,
+                                 includeTags: String?,
+                                 excludeTags: String?,
+                                 number: Int,
+                                 apiKey: String) : RecetaApi
 }
 class RecipeRepositoryImpl(
     private val api: ApiSpoonacular,
@@ -29,5 +34,13 @@ class RecipeRepositoryImpl(
 
     override suspend fun deleteAllRecipes() {
         recipeDao.deleteAllRecetas()
+    }
+
+    override suspend fun getRandomRecipe(includeNutrition: Boolean,
+                                         includeTags: String?,
+                                         excludeTags: String?,
+                                         number: Int,
+                                         apiKey: String): RecetaApi{
+        return api.getRandomRecipe(includeNutrition,includeTags,excludeTags,1,apiKey)
     }
 }
